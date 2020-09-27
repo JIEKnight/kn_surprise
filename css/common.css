@@ -1,0 +1,116 @@
+*{ margin: 0; padding: 0;}
+ul, ol{ list-style: none;}
+img{ display: block;}
+html{ font-size: 16px; font-family: "Adobe 楷体 Std";}
+a{text-decoration: none; color:gray; font-size: 20px; font-family: "Adobe 楷体 Std";}
+.l{ float: left;}
+.r{ float: right;};
+.clear::after{ content: ''; display: block; clear: both;}
+.container-fluid{ width: 100%; font-family: "Adobe 楷体 Std";}
+.container{ width: 66.6%; margin: 0 auto; position: relative; font-family: "Adobe 楷体 Std";}
+
+#head{height: 80px; background-color: #EEEEEE;}
+
+#love_icon{ display: block; width: 74px; height: 54px; position: absolute; left: 20px; top: 10px;}
+
+#song_name{ color: pink; text-align: center;}
+#player{ width: 500px; height: 80px; border: 2px solid pink; border-radius: 40px; position: absolute; box-sizing: border-box; left: 0; top: 35px; z-index: 5;}
+#time_line{ width: 400px; height: 5px; border: 1px solid rgb(105, 64, 71); border-radius: 5px; position: absolute; bottom: 5px; left: calc(50% - 175px); box-sizing: border-box;}
+#past_time{ height: 3px; border-radius: 5px; width: 0; background: white;}
+#changpian { width: 50px; height: 50px; position: absolute; left: 0; top: calc(50% - 25px);}
+#changpian i{ display: block; width: 100%; height: 100%; font-size: 50px; color: pink; text-align: center;}
+#controlBtn { width: 200px; height: 40px; display: flex; justify-content: space-around; position: absolute; left: calc(50% - 100px); top: 25px;}
+#controlBtn button{ background: rgba(0, 0, 0, 0.1);}
+#controlBtn i{ font-size: 20px; cursor: pointer; color: pink;}
+#start{ display: none;}
+#current_time{ position: absolute; right: 25px; top: 40px; color: pink}
+
+
+#nav{ width: 400px; height: 60px; position: absolute; right: calc(50% - 200px); margin-top: 14px;}
+#nav .active{ color: pink;}
+#nav ul{ width: 100%; height: 100%; display: flex; justify-content: space-around;}
+#nav ul li{ position: relative;}
+#nav ul li a{ line-height: 60px; font-size: 18px;}
+#nav ul li:hover a{ color: pink; text-decoration: underline;}
+#nav ul li:nth-of-type(5):hover ol{ display: block;}
+#nav ol{ width: 100px; height: 100px; text-align: center;}
+
+#more{position: absolute; top: 45px; right: calc(-100%); z-index: 6; display: none;}
+
+
+#login{ position: absolute; right: 40px; top: 25px;}
+
+#footer{ width: 100%; height: 79px; background: #eeeeee; border-top: 1px pink solid;}
+#footer p{ line-height: 80px;}
+
+#login_box{ height: 100%; background-color: rgba(0, 0, 0, 0.8); position: fixed; z-index: 999; left: 0; top: 0; display: none}
+#login_box .login{ width: 500px; height: 500px; border: 1px solid black;  border-radius: 22px;background-color: pink; position: absolute; left: calc(50% - 250px); top: 20%;}
+
+#login_box .login .header{text-align: center; margin-top: 20px;  overflow: hidden; color: #eeeeee;}
+#login_box .login .input{ width: 60%; height: 40px; margin: 40px auto;}
+#login_box .login .input input{ width: 100%; height: 100%; font-size: 20px; outline: none; border: none; background-color: pink; border-bottom: 2px solid white; box-sizing: border-box;
+color: white;
+}
+#login_box .login .input input:focus{animation: breath 3s infinite ease-in-out alternate;}
+
+@keyframes breath {
+    0% {opacity: .2;}70% {opacity: 1;}to {opacity: .2;}
+    }
+
+input::-webkit-input-placeholder {
+    color: white; font-weight: 100;
+}
+#alert_info1{ text-align: center; border: none; display: none;}
+#login_box .login .btns{ width: 60%; margin: 0 auto;}
+#login_box .login .btns button{ display: block; width: 100%; height: 40px; background-color: rgba(0, 0, 0, 0); outline: none; margin-bottom: 30px; border: 2px white solid; border-radius: 20px; color: white; transition: .5s;}
+#login_box .login .btns button:hover{ box-shadow: 2px 2px 2px black, 0 0 15px #F89AAA inset;}
+
+
+
+
+#register_box{ height: 100%; background-color: rgba(0, 0, 0, 0.8); position: fixed; z-index: 999; left: 0; top: 0; display: none}
+#register_box .register{ width: 500px; height: 500px; border: 1px solid black;  border-radius: 22px;background-color: pink; position: absolute; left: calc(50% - 250px); top: 20%;}
+
+#register_box .register .header{text-align: center; margin-top: 10px;  overflow: hidden; color: #eeeeee;}
+#register_box .register .input{ width: 60%; height: 40px; margin: 30px auto;}
+#register_box .register .input input{ width: 100%; height: 100%; font-size: 20px; outline: none; border: none; background-color: pink; border-bottom: 2px solid white; box-sizing: border-box;
+color: white;
+}
+#register_box .register .input input:focus{animation: breath 3s infinite ease-in-out alternate;}
+
+@keyframes breath {
+    0% {opacity: .2;}70% {opacity: 1;}to {opacity: .2;}
+    }
+
+input::-webkit-input-placeholder {
+    color: white; font-weight: 100;
+}
+#alert_info2{ text-align: center; border: none; display: none; margin-bottom: 10px;}
+#register_box .register .btns{ width: 60%; margin: 0 auto;}
+#register_box .register .btns button{ display: block; width: 100%; height: 40px; background-color: rgba(0, 0, 0, 0); outline: none; margin-bottom: 30px; border: 2px white solid; border-radius: 20px; color: white; transition: .5s;}
+#register_box .register .btns button:hover{ box-shadow: 2px 2px 2px black, 0 0 15px #F89AAA inset;}
+
+
+
+
+
+
+
+
+
+/* #alert_info{ display: none;} */
+/* @media (min-width: 768px) {
+    .container {
+      width: 750px;
+    }
+  }
+  @media (min-width: 992px) {
+    .container {
+      width: 970px;
+    }
+  }
+  @media (min-width: 1200px) {
+    .container {
+      width: 1170px;
+    }
+  } */

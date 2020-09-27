@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>查看歌单</title>
+        <link rel="stylesheet" href="./css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/common.css">
+        <!-- <link rel="stylesheet" href=""> -->
+        <script src="./js/ajax.js"></script>
+        <script src="./js/tool.js"></script>
+        <style>
+            #table th { text-align: center;}
+            #bgimage{ min-height: 780px; padding: 0; position: relative;}
+            #bgimage img{ width: 100%; height: 100%;}
+            #table_box{ position: absolute; top: 0; left: calc(50% - 480px);}
+            /* #table a{ font-size: 12px;} */
+            table{     
+                table-layout:fixed;/* 只有定义了表格的布局算法为fixed，下面td的定义才能起作用。 */
+            }
+            td{
+                width:100%;
+                word-break:keep-all;/* 不换行 */
+                white-space:nowrap;/* 不换行 */
+                overflow:hidden;/* 内容超出宽度时隐藏超出部分的内容 */
+                text-overflow:ellipsis;/* 当对象内文本溢出时显示省略标记(...) ；需与overflow:hidden;一起使用。*/
+                text-align: center;
+            }
+
+        </style>
+        <script>
+            window.onload = function(){
+                var oBtn = document.getElementById('btn');
+                var oTbody = document.getElementById('tbody');
+                var oLoveIcon = document.getElementById('love_icon');
+                var deg = 0;
+                setInterval(function(){
+                    oLoveIcon.style.transform = `rotateZ(${deg % 360}deg)`;
+                    deg += 1;
+                },30)
+                oBtn.onclick = function(){
+                    $ajax({
+                        method: 'get',
+                        url: 'getSong.php',
+                        success: function(result){
+                            var arr = JSON.parse(result);
+                            var str = '';
+                            for(var i = 0; i < arr.length; i++){
+                                str += `<tr>
+                                    <td>${doubleNum(arr[i].id)}</td>
+                                    <td>${arr[i].songname}</td>
+                                    <td text-overflow:ellipsis>${arr[i].url}</td>
+                                    <td id="${arr[i].id}">
+                                        <a href="#">删除</a>    
+                                        <a href="updateSong.html?id=${arr[i].id}">修改</a>    
+                                    </td>
+                                </tr>`
+                            }
+                            oTbody.innerHTML = str;
+                        },
+                        error: function(msg){
+                            alert(msg);
+                        }
+                    })
+                }
+                oTbody.onclick = function(even){
+                    var e = even || window.event;
+                    var target = e.target || window.event.srcElement;
+                    var id = target.parentNode.id;
+                    if(target.nodeName.toLowerCase() == 'a' && target.innerHTML == '删除'){
+                        $ajax({
+                            method: 'get',
+                            url: 'deleteSong.php',
+                            data: {
+                                id: id
+                            },
+                            success: function(result){
+                                // alert(result);
+                                var obj = JSON.parse(result);
+                                if(!obj.code){
+                                    oTbody.removeChild(target.parentNode.parentNode);
+                                }
+                                alert(obj.message);
+                            },
+                            error: function(msg){
+                                alert(msg);
+                            }
+                        })
+                        return false;
+                    }
+                }
+            }
+        </script>
+    </head>  
+    <body>
+        <div id="head" class="container-fluid">      
+            <div class="container">
+                <i id="love_icon"></i>        
+                <div id="nav">
+                    <ul>
+                        <li><a href="index.html">首页</a></li>
+                        <li><a href="#">悄悄话</a></li>
+                        <li><a href="gallery.html">画册</a></li>
+                        <li><a href="#">爱心树</a></li>
+                        <li><a class="active" href="#">更多</a>
+                            <ol id="more">
+                                <li><a href="addsong.html">添加歌曲</a></li>
+                                <li><a href="songList.html">查看歌单</a></li>
+                            </ol>
+                        </li>
+                        
+                    </ul>
+                    
+                </div>
+            </div>
+        </div>
+        <div id="bgimage" class="container-fluid">
+            <img src="./img/cat/01.jpg" alt="">
+            <div id="table_box" class="container">
+                <div class="panel-primary">
+                    <div class="panel-heading">
+                        <h2>获取歌曲列表</h2>
+                    </div>
+                    <br>
+                    <button id="btn" class="form-control btn btn-info">获取歌曲信息</button>
+                    <div class="panel-body">
+                        <table id="table" class="table table-hover table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>歌曲ID</th>
+                                    <th>歌名</th>
+                                    <th>地址</th>
+                                    <th>操作</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tbody">
+                            
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

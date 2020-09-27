@@ -1,0 +1,76 @@
+#background_text{height: 710px; overflow: hidden; position: relative;}
+#background_text .title{ position: absolute; left: 535px; top: 209px; color: #DC7C7C; z-index: 3; font-size: 78px;}
+#background_text .text{ position: absolute; left: 540px; top: 326px; z-index: 3; color: #E45050; font-size: 24px;}
+#background_text .mask{ width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); position: absolute; z-index: 2;}
+#background_text img{ width: 100%;; position: absolute; z-index: 1;}
+
+#text_rect{ width: 960px; height: 125px; background-color: white; border-radius: 20px 20px 0 0; position: absolute; bottom: 0; left: calc(50% - 480px); z-index: 2; text-align: center;}
+#text_rect .titleP{ font-size: 40px;}
+#text_rect .textP{ font-size: 22px;}
+
+#banner{ height: 300px; border: 1px solid pink; border-radius: 20px; margin-top: 30px; position: relative; overflow: hidden;}
+#banner_ul{ width: 960px; position: absolute;}
+#banner ul li{ width: 200px; height: 266px; margin: 20px; float: left; border-radius: 20px; overflow: hidden;}
+#banner ul li:hover img{ transform: scale(1.5) rotateZ(15deg);}
+#banner ul li img{ width: 200px; height: 266px; transition: 1s;}
+
+.boundary{ height: 2px; background-color:pink; margin-top: 60px;}
+
+#text1{ text-align: center; margin-top: 42px;}
+#text1 .titleP{ font-size: 40px;}
+#text1 .textP{ font-size: 22px;}
+#text1 i{ display: block; width: 32px; font-size: 32px; line-height: 32px; margin-left: 104px;}
+#text1 .img_text{ margin-top: 50px; height: 520px; position: relative;}
+#text1 .img{ width: 700px; height: 438px; }
+#text1 .img img{ width: 100%; height: 100%; transition: 1s;}
+#text1 .img:hover img{ transform: scale(1.1);}
+.learn_more a{ position: absolute; width: 200px; height: 50px; border: black solid 1px; font-size: 24px; bottom: 0; left: calc(50% - 100px); text-align: center; line-height: 50px; border-radius: 24px; transition: .5s;}
+.learn_more a:hover{ text-decoration: underline; color: pink; border: 2px pink solid; box-shadow: 2px 2px black;
+bottom: 2px;}
+
+#text2{ text-align: center; margin: 42px auto 20px auto;}
+#text2 .titleP{ font-size: 40px;}
+#text2 .textP{ font-size: 22px;}
+
+#secret{ height: 520px; box-sizing: border-box; background: url(../img/cat/21.jpg) no-repeat; background-size: cover; position: relative;}
+#secret div{ height: 100%;}
+#secret div ul{width: 100%; height: 100%; display: flex; justify-content: space-between; align-items: center;}
+#secret li{ width: 300px; height: 400px; display: flex; justify-content: center; align-items: center; border-radius: 25px; overflow: hidden; transition: .5s;}
+#secret li:nth-of-type(1){ background: url(../img/cat/12600.jpg); background-size: cover; background-position: -160px 0;}
+#secret li:nth-of-type(2){ background: url(../img/cat/17.jpg); background-size: cover; background-position: -160px 0;}
+#secret li:nth-of-type(3){ background: url(../img/cat/15600.jpg); background-size: cover; background-position: -120px 0;}
+#secret li:hover{ transform: scale(1.1);}
+#secret li:hover button{ transform: scale(0.9);}
+#secret .content{ width: 500px; height: 520px; background-color: rgba(0, 0, 0, 0.5); position: absolute; left: calc(50% - 250px); top: 0; color: white; display: none; border-radius: 20px;}
+#secret .active{ display: block;}
+#secret .content h2{ text-align: center;}
+#secret .content i{ font-size: 24px; cursor: pointer; line-height: 26px; border-radius: 10px; position: absolute; right: 10px; top: 20px; transition: .3s;}
+#secret .content i:hover{ background: pink; color: white; transform: translateY(-2px);}
+
+#backtotop{ width: 42px; height: 42px; display: block; position: fixed; right: 60px; bottom: 50px; z-index: 1;}
+#backtotop a{ font-size: 40px;}
+#backtotop:hover a{ color: pink;}
+
+#text3{ text-align: center; margin: 42px auto 20px auto;}
+#text3 .titleP{ font-size: 40px;}
+#text3 .textP{ font-size: 22px;}
+
+#gururin{ width: 100%; height: 600px; background-color: #eeeeee; overflow: hidden; perspective: 1500px;}
+#gururin ul{ width: 400px; height: 300px; position: relative; margin: 150px auto; transform-style: preserve-3d;}
+#gururin ul li{ width: 100%; height: 100%; position: absolute; transition: 2s; border-radius: 22px; overflow: hidden;}
+#gururin ul li img{ width: 100%; height: 100%;}
+#gururin ul li:nth-of-type(1) { transform: rotateY(0deg) translateZ(400px);}
+#gururin ul li:nth-of-type(2) { transform: rotateY(60deg) translateZ(400px);}
+#gururin ul li:nth-of-type(3) { transform: rotateY(120deg) translateZ(400px);}
+#gururin ul li:nth-of-type(4) { transform: rotateY(180deg) translateZ(400px);}
+#gururin ul li:nth-of-type(5) { transform: rotateY(240deg) translateZ(400px);}
+#gururin ul li:nth-of-type(6) { transform: rotateY(300deg) translateZ(400px);}
+
+#gururin:hover li:nth-of-type(1) { transform: rotateY(0deg) translateZ(600px);}
+#gururin:hover li:nth-of-type(2) { transform: rotateY(60deg) translateZ(600px);}
+#gururin:hover li:nth-of-type(3) { transform: rotateY(120deg) translateZ(600px);}
+#gururin:hover li:nth-of-type(4) { transform: rotateY(180deg) translateZ(600px);}
+#gururin:hover li:nth-of-type(5) { transform: rotateY(240deg) translateZ(600px);}
+#gururin:hover li:nth-of-type(6) { transform: rotateY(300deg) translateZ(600px);}
+/* #gururin:hover ul{ transform: rotateY(360deg);} */
+

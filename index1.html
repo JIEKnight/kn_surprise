@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>七夕快乐呀！</title>
+    <link rel="Shortcut Icon" href="./icon/love1.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/buttons.css">
+    <link rel="stylesheet" href="./css/common.css">
+    <style>
+    </style>
+    <script src="./js/tool.js"></script>
+    <script>
+        window.onload = function(){
+            var oTogetherDays = document.getElementById('togetherDays');
+            var oToday = document.getElementById('today');
+            var timeObj = new TimeObj();
+            oTogetherDays.innerHTML = test();
+            oToday.innerHTML = showDay();
+            setInterval(function(){
+                oToday.innerHTML = showDay();
+                oTogetherDays.innerHTML = test();
+
+            },1000);
+            var i = 1;
+            // setInterval(function(){
+               
+            //     document.title += i;
+            // },1000)
+        }
+    </script>
+</head>
+<body>
+    <audio src="./resource/徐佳莹-喜欢你.mp3" loop></audio>
+    <div class="container-fluid" id="container-fluid01">
+        <div class="container">
+            <div id="nav">
+                <ul class="nav nav-tabs">
+                    <li role="presentation" class="active"><a href="#">首页</a></li>
+                    <li role="presentation"><a href="#">爱心树</a></li>
+                    <li role="presentation"><a href="#">信件</a></li>
+                </ul>
+            </div>
+            <div class="panel panel-danger">
+                <div class="panel-heading">
+                  <h2>那天2020.05.20我们在一起了&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;今天是<span id="today"></span></h2>
+                  <h2>已经在一起<span id="togetherDays"></span></h2>
+                </div>
+                <div class="panel-body">
+                    <div id="banner">
+                        <ul id="banner_ul">
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                        </ul>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid" id="container-fluid02">
+        
+    </div>
+    
+</body>
+</html>

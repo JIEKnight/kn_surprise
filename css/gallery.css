@@ -1,0 +1,25 @@
+#background_text{height: 710px; overflow: hidden; position: relative;}
+#background_text .title{ position: absolute; left: 535px; top: 209px; color: #DC7C7C; z-index: 3; font-size: 78px;}
+#background_text .text{ position: absolute; left: 540px; top: 326px; z-index: 3; color: #E45050; font-size: 24px;}
+#background_text .mask{ width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); position: absolute; z-index: 2;}
+#background_text img{ width: 100%;; position: absolute; z-index: 1;}
+
+#text_rect{ width: 960px; height: 125px; background-color: white; border-radius: 20px 20px 0 0; position: absolute; bottom: 0; left: calc(50% - 480px); z-index: 2; text-align: center;}
+#text_rect .titleP{ font-size: 40px;}
+#text_rect .textP{ font-size: 22px;}
+
+#gallery{ width: 100%; height: 800px; background-color: rgba(255,192,203,0.3); margin: 10px; column-count: 3; column-gap: 10px; margin: 0;}
+
+.box {
+    margin: 10px;
+    column-count: 3;
+    column-gap: 20px;
+}
+.item {
+    margin-bottom: 10px; transition: 0.5s;
+}
+.item:hover{ transform: scale(1.5);}
+.item img{
+    width: 100%;
+    height:100%;
+}

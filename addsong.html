@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>添加歌曲</title>
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/common.css">
+    <script src="./js/ajax.js"></script>
+    <style>
+        #addsong{ width: 400px; margin: 150px auto;}
+        #alert_info{ margin: 2px; padding: 2px; text-align: center; display: none;}
+        #bgimage{ min-height: 780px; padding: 0; position: relative;}
+        #bgimage img{ width: 100%; height: 100%;}
+        #addbox{ position: absolute; top: 5%; left: 20%;}
+    </style>
+    <script>
+        window.onload = function(){
+            var oBtn1 = document.getElementById('btn1');
+            var oInput = document.getElementsByTagName('input');
+            var oAlert = document.getElementById('alert_info');
+            var oLoveIcon = document.getElementById('love_icon');
+            var deg = 0;
+            setInterval(function(){
+                oLoveIcon.style.transform = `rotateZ(${deg % 360}deg)`;
+                deg += 1;
+            },30)
+            oBtn1.onclick = function(){
+                $ajax({
+                    method: 'post',
+                    url: 'addsong.php',
+                    data: {
+                        'songname': oInput[0].value,
+                        'songurl': oInput[1].value,
+                    },
+                    success: function(result){
+                        var obj = JSON.parse(result);
+                        if(obj.code){
+                            oAlert.className = 'alert alert-danger';
+                        }else{
+                            oAlert.className = 'alert alert-success';
+                            // setTimeout(function(){
+                            //     location.href = 'login.html';
+                            // },3000)
+                        }
+                        oAlert.style.display = 'block';
+                        oAlert.innerHTML = obj.message;
+                    },
+                    error: function(msg){
+                        alert(msg);
+                    }
+                })
+            }
+        }
+    </script>
+</head>
+<body>
+    <div id="head" class="container-fluid">      
+        <div class="container">
+            <i id="love_icon"></i>        
+            <div id="nav">
+                <ul>
+                    <li><a href="index.html">首页</a></li>
+                    <li><a href="#">悄悄话</a></li>
+                    <li><a href="#">画册</a></li>
+                    <li><a href="#">爱心树</a></li>
+                    <li><a class="active" href="#">更多</a>
+                        <ol id="more">
+                            <li><a href="addsong.html">添加歌曲</a></li>
+                            <li><a href="songList.html">查看歌单</a></li>
+                        </ol>
+                    </li>
+                    
+                </ul>
+                
+            </div>
+        </div>
+    </div>
+    
+    <div id="bgimage" class="container-fluid">
+        <img src="./img/cat/01.jpg" alt="">
+        <div id="addbox" class="container">
+            <div class="panel panel-primary" id="addsong">
+                <div class="panel-heading">添加</div>
+                <div class="panel-body">
+                  <div class="form-group">
+                      <label for="songname">歌名：</label>
+                      <input type="text" name="songname" class="form-control">
+                  </div>
+                  <div class="form-group">
+                    <label for="songname">地址：</label>
+                    <input type="songurl" name="songurl" class="form-control">
+                  </div>
+                  <div class="alert alert-info" role="alert" id="alert_info">成功</div>
+                  <button id="btn1" class="btn btn-primary pull-right">添加</button>
+                </div>
+            </div>         
+        </div>
+    </div>
+
+</body>
+</html>

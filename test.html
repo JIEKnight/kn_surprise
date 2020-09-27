@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <title>Document</title>
+    <script src="./js/ajax.js"></script>
+    <script>
+        window.onload = function(){
+            var oSinger = document.getElementById('singer');
+            var oBtn = document.getElementById('btn');
+            oBtn.onclick = function(){
+                // alert('提交');
+                var obj = {};
+                $ajax({
+                    method: 'get',
+                    url: 'text.txt',
+                    success: function(result){
+                        // var obj = JSON.parse(result);
+                        // // alert(obj);
+                        // var objList = obj.data.list;
+                        // var objList = objData.list;
+                        // for(var i = 0; i < objList.length; i++){
+                        //     var arr = [];
+                        //     arr.push(objList[i].name);
+                        //     arr.push(objList[i].artist);
+                        //     ar.push(objList[i].rid);
+
+                        // }
+                        $ajax({
+                            method: 'post',
+                            url: 'test.php',
+                            data: {
+                                data: result
+                            },
+                            success: function(res){
+
+                                alert(res);
+                            },
+                            error: function(con){
+                                alert(con);
+                            }
+                        })
+
+                    },
+                    error: function(msg){
+                        alert(msg)
+                    }
+                })
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="form-group">
+            <label for="singer">歌手名</label>
+            <input class="form-control" type="text" name="singer" id="singer">   
+        </div>
+        <button id="btn" class="form-control">提交</button>
+    </div>
+</body>
+</html>

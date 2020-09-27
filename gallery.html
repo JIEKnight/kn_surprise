@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/common.css">
+    <link rel="stylesheet" href="./css/iconfont/iconfont.css">
+    <link rel="stylesheet" href="./css/gallery.css">
+    <link rel="stylesheet" href="./css/buttons.css">
+    <script src="./js/tool.js"></script>
+    <script src="./js/ajax.js"></script>
+    <script>
+        window.onload = function(){
+            var oIsplay = document.getElementById('isPlay');
+            var oLast = document.getElementById('lastBtn');
+            var oNext = document.getElementById('nextBtn');     
+            var oAudio = document.getElementById('audio');
+            var oPastTime = document.getElementById('past_time');
+            var oCurrentTime = document.getElementById('current_time');
+            var oControlBtn = document.getElementById('controlBtn');
+            var oCp = document.getElementById('changpian');
+            var oSongName = document.getElementById('song_name');
+            var oLoveIcon = document.getElementById('love_icon');
+            var oGallery = document.getElementById('gallery');
+            // var oGalleryLi = oGallery.getElementsByTagName('li');
+            // var oGalleryLi = 
+            var imgdeg = 0; 
+                var deg = 0;
+                setInterval(function(){
+                    oLoveIcon.style.transform = `rotateZ(${deg % 360}deg)`;
+                    deg += 1;
+                },30)
+
+            setInterval(function(){
+            oLoveIcon.style.transform = `rotateZ(${imgdeg % 360}deg)`;
+            isPlay(oAudio, oIsplay);
+            imgdeg += 1;
+            // console.log(oAudio.index);
+            if(Math.round(oAudio.currentTime) == Math.round(oAudio.duration)){
+                id = Number(oAudio.index) + 1;
+                getSong(id, oAudio, oSongName);
+                    
+                }
+            },30)
+            progressBar(oAudio, oPastTime, oCurrentTime);
+            oIsplay.onclick = function(){
+                btnSwitch(oAudio, oIsplay);
+            }    
+            getSong(0,oAudio,oSongName);
+            var cpdeg = 0; // 唱片的旋转角度
+            cpPlay(oCp, oAudio, cpdeg);
+            oNext.onclick = function(){
+                id = Number(oAudio.index) + 1;
+                getSong(id,oAudio,oSongName);
+            }// 下一首
+            oLast.onclick = function(){
+                id = Number(oAudio.index) - 1;
+                getSong(id,oAudio,oSongName);
+                // alert('sgs');
+            }// 上一首
+            var newGbox = document.createElement('div');
+            newGbox.className = 'box';
+            for(var i = 0; i < 33; i++){
+                var newGdiv = document.createElement('div');
+                newGdiv.className = 'item';
+                newGdiv.innerHTML = `<img src="./img/jiangyu/${i + 1}.jpg">`;
+                newGbox.appendChild(newGdiv);
+            }
+            oGallery.appendChild(newGbox);
+        }
+    </script>
+</head>
+<body>
+    <audio id="audio" autoplay></audio>
+    <div id="head" class="container-fluid">      
+        <div class="container">
+            <i id="love_icon">
+                <img src="./img/jiangyu/love_icon.png" alt="">
+            </i>        
+            <div id="nav">
+                <ul>
+                    <li><a href="index.html">首页</a></li>
+                    <li><a href="#">悄悄话</a></li>
+                    <li><a class="active" href="gallery.html">画册</a></li>
+                    <li><a href="#">爱心树</a></li>
+                    <li><a href="#">更多</a>
+                        <ol id="more">
+                            <li><a href="addsong.html">添加歌曲</a></li>
+                            <li><a href="songList.html">查看歌单</a></li>
+                        </ol>
+                    </li>
+                    
+                </ul>
+                
+            </div>
+        </div>
+        <!-- <div id="login">
+            <button class="button button-primary button-pill button-small">登录</button>
+            <button class="button button-primary button-pill button-small">注册</button>
+        </div> -->
+    </div>
+    <div id="background_text" class="container-fluid">
+        <div id="player">
+            <div  id="changpian">
+                <i class="iconfont icon-yinlechangpian"></i>
+            </div>
+            <p id="song_name"></p>
+            <div id="controlBtn">
+                <button class="button button-pill button-small"><i id="lastBtn" class="iconfont icon-shangyishou_huaban"></i></button>
+                <button class="button button-pill button-small"><i id="isPlay" class="iconfont icon-kaishi"></i></button>
+                <button class="button button-pill button-small"><i id="nextBtn" class="iconfont icon-xiayishou_huaban"></i></button>
+            </div>
+            <div id="time_line">
+                <div id="past_time"></div>
+            </div>
+            <p id="current_time">00:00/00:00</p>
+        </div>
+        <p class="title">I Love You</p>
+        <span class="text">I’m wrapped around your finger.</span>
+        <div class="mask"></div>
+        <img src="./img/cat/01.jpg">
+        <div id="text_rect">
+            <p class="titleP">
+                I want to be with you.
+            </p>
+            <span class="textP">You know my loneliness is only kept for you|my sweet songs are only sung for you. </span>
+        </div>   
+    </div>
+    <div class="container-fluid">
+        <div id="gallery">
+        </div>
+    </div>
+    <div id="footer" class="container-fluid">
+        <div class="container">
+            <div>
+                <p class="l">这里有点东西才好看.email:1872606256@qq.com</p>
+                <p class="r">By KnightJIE</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

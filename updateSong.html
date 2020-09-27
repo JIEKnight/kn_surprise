@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>修改信息</title>
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <script src="./js/ajax.js"></script>
+    <style>
+        #login{ width: 400px; margin: 150px auto;}
+        #alert_info{ margin: 2px; padding: 2px; text-align: center; display: none;}
+        #box{ display: flex; justify-content: space-between; font-size: 12px;}
+    </style>
+    <script>
+        window.onload = function(){
+            var oBtn = document.getElementById('btn1');
+            var oInput = document.getElementsByTagName('input');
+            var oAlert = document.getElementById('alert_info');
+            var id = valueByName(location.search, 'id');
+            var oHidden = document.getElementById('hidden');
+            // alert(id);
+            $ajax({
+                method: 'get',
+                url: 'updateSong.php',
+                data: {
+                    id: id
+                },
+                success: function(result){
+                    var obj = JSON.parse(result);
+                    if(!obj.code){
+                        var row = obj.message;
+                        oInput[0].value = row.songname;
+                        oInput[1].value = row.url;
+                        oHidden.value = id;
+                    }else{
+                        oAlert.style.display = 'block';
+                        oAlert.innerHTML = obj.message;
+                    }
+                    
+                },
+                error: function(msg){
+                    alert(msg);
+                }
+            })
+            oBtn.onclick = function(){
+                $ajax({
+                    method: 'post',
+                    url: 'submit.php',
+                    data: {
+                        id: oHidden.value,
+                        songname: oInput[0].value,
+                        url: oInput[1].value
+                    },
+                    success: function(result){
+                        var obj = JSON.parse(result);
+                        alert(obj.message);
+                        // alert(result)
+                    },
+                    error: function(msg){
+                        alert(msg);
+                    }
+                })
+            }
+        }
+
+        function valueByName(search, name){
+            var start = search.indexOf(name + '=');
+            var str = '';
+            if(start == -1){
+                return null;     
+            }else{
+                var end = search.indexOf('&', start);
+                if(end == -1){
+                    end = search.length;
+                }
+                str = search.substring(start, end);               
+            }
+            var arr = str.split('=');
+            return arr[1];
+           
+        }
+    </script>
+    
+</head>
+<body>
+    <div class="container">
+        <div class="panel panel-primary" id="login">
+            <div class="panel-heading">修改歌曲</div>
+            <div class="panel-body">
+              <div class="form-group">
+                  <label for="songname">歌名：</label>
+                  <input type="text" name="songname" class="form-control">
+              </div>
+              <div class="form-group">
+                <label for="url">地址：</label>
+                <input type="text" name="url" class="form-control">
+              </div>
+              <div class="form-group">
+                <input id="hidden" type="hidden" name="password" class="form-control">
+              </div>           
+              <div class="alert alert-info" role="alert" id="alert_info">成功</div>
+              <div id="box">
+                <a href="songList.html" class="pull-left" id="register">查看歌单</a>
+                <!-- <a href="login.html" class="pull-left" id="forget">忘记密码</a> -->
+              </div>
+              <button id="btn1" class="btn btn-primary pull-right">确定</button>
+            </div>
+        </div>
+          
+    </div>
+</body>
+</html>
